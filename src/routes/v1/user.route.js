@@ -1,6 +1,6 @@
 import express from 'express'
 import validate from '../../middleware/validate'
-import userValidation from '../../validations/userValidation'
+import userValidation from '../../validations/user.validation'
 import UserCtrl from '../../controllers/user.controller'
 import asyncHandler from '../../utils/asyncHandler'
 

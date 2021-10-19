@@ -1,4 +1,5 @@
 import createError from 'http-errors'
+import { object } from 'yup'
 
 const validate = schema => (req, res, next) => {
   try {
@@ -8,7 +9,7 @@ const validate = schema => (req, res, next) => {
       ...req.query,
     }
 
-    const value = schema.validateSync(obj, {
+    const value = object(schema).noUnknown().validateSync(obj, {
       abortEarly: false,
       stripUnknown: false,
     })
