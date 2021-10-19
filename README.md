@@ -214,7 +214,7 @@ The app has a centralized error handling mechanism.
 Controllers should try to catch the errors and forward them to the error handling middleware (by calling `next(error)`). For convenience, you can also wrap the controller inside the catchAsync utility wrapper, which forwards the error.
 
 ```javascript
-const asynHandler = require('../utils/asynHandler')
+import asynHandler from '../utils/asynHandler'
 
 const controller = catchAsync(async (req, res) => {
   // this error will be forwarded to the error handling middleware
@@ -239,7 +239,7 @@ For example, if you are trying to get a user from the DB who is not found, and y
 
 ```javascript
 import createError from 'http-errors'
-const User = require('../models/User')
+import User from '../models/User'
 
 const getUser = async userId => {
   const user = await User.findById(userId)
@@ -256,10 +256,10 @@ Request data is validated using [Joi](https://github.com/jquense/yup). Check the
 The validation schemas are defined in the `src/validations` directory and are used in the routes by providing them as parameters to the `validate` middleware.
 
 ```javascript
-const express = require('express')
-const validate = require('../../middlewares/validate')
-const userValidation = require('../../validations/user.validation')
-// const userController = require('../../controllers/user.controller')
+import express from 'express'
+import validate from '../../middlewares/validate'
+import userValidation from '../../validations/user.validation'
+import userController from '../../controllers/user.controller'
 
 const router = express.Router()
 
@@ -275,9 +275,9 @@ router.post(
 To require authentication for certain routes, you can use the `auth` middleware.
 
 ```javascript
-const express = require('express')
-const auth = require('../../middlewares/auth')
-const userController = require('../../controllers/user.controller')
+import express from 'express'
+import auth from '../../middlewares/auth'
+import userController from '../../controllers/user.controller'
 
 const router = express.Router()
 
@@ -303,9 +303,9 @@ A refresh token is valid for 30 days. You can modify this expiration time by cha
 The `auth` middleware can also be used to require certain rights/permissions to access a route.
 
 ```javascript
-const express = require('express')
-const auth = require('../../middlewares/auth')
-const userController = require('../../controllers/user.controller')
+import express from('express'
+import auth from('../../middlewares/auth'
+import userController from('../../controllers/user.controller'
 
 const router = express.Router()
 
@@ -349,8 +349,8 @@ Note: API request information (request url, response code, timestamp, etc.) are 
 The app also contains 2 custom mongoose plugins that you can attach to any mongoose model schema. You can find the plugins in `src/models/plugins`.
 
 ```javascript
-const mongoose = require('mongoose')
-const { toJSON, paginate } = require('./plugins')
+import mongoose from 'mongoose'
+import { toJSON, paginate } from './plugins'
 
 const userSchema = mongoose.Schema(
   {
