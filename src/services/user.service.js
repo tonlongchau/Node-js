@@ -73,7 +73,7 @@ class UserService {
   async deleteById(id) {
     const user = await this.findById(id)
     if (!user) {
-      throw this.createError.NotFound()
+      throw createError.NotFound()
     }
     const result = await user.remove()
     return result
