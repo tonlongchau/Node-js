@@ -49,8 +49,11 @@ class UserCtrl {
    * @access private
    */
   async deleteUser(req, res) {
-    await userService.deleteById(req.params.userId)
-    res.status(200).json({ success: true })
+    const user = await userService.deleteById(req.params.userId)
+    res.status(200).json({
+      success: true,
+      message: `Remove user: ${user.id} successfully!!!`,
+    })
   }
 }
 

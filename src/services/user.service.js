@@ -38,7 +38,7 @@ class UserService {
    */
   async create(body) {
     if (await User.isEmailTaken(body.email)) {
-      throw createError.BadRequest()
+      throw createError.BadRequest('Email already exists')
     }
     return User.create(body)
   }
