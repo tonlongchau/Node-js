@@ -1,4 +1,7 @@
+import dotenv from 'dotenv'
 import { object, mixed, number, string } from 'yup'
+
+dotenv.config()
 
 const envVarsSchema = object({
   NODE_ENV: mixed().oneOf(['production', 'development', 'test']).required(),
